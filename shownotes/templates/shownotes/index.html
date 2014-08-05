@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CLASS NOTES</title>
+<script type="text/javascript" src="/static/jquery-2.1.0.js"></script>
+<link href="../../static/css/shownotes/index.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  
+  <div id="top-bar">
+	  <ul>
+      <li><a href="/editnote/edit">New Note</a></li>
+	  </ul>
+    <div><a href="/shownotes/index">Class Note</a></div>
+  </div>
+  <div>
+    <div id="classname">
+      {% for n in note%}
+        <div onclick="getContent('{{n.id}}')">
+          
+          {{ n.subject|safe }}</br>
+          {{ n.content|safe }}
+
+        </div>
+      {% endfor %}
+    </div>
+    <div id="shownote">Content for  class "main" Goes Here </div>
+  </div>
+  <script>
+  var content;
+
+  function getContent(id) {
+    $.getJSON("/shownotes/getContent/?q="+id, 
+    function(data){
+      content = data;
+      document.getElementById("shownote").innerHTML = content['content'];
+    });
+    
+  }
+
+</script>
+
+</body>
+</html>

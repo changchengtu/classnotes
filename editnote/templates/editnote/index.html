@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CLASS NOTES</title>
+<script type="text/javascript" src="/static/jquery-2.1.0.js"></script>
+<script src="{{ STATIC_URL }}ckeditor/ckeditor.js"></script>
+<link href="../../static/css/shownotes/index.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div id="top-bar">
+    <ul>
+      <li><a href="/editnote/edit">New Note</a></li>
+    </ul>
+    <div><a href="/shownotes/index">Class Note</a></div>
+  </div>
+        
+  <form action="/editnote/save" method="post">
+    {% csrf_token %}
+    classname<input id="subject" name="subject" value="subject"></input>
+    <textarea name="editor" id="editor" rows="10" cols="80" >This is my textarea to be replaced with CKEditor.</textarea>
+    <script>
+      // Replace the <textarea id="editor1"> with a CKEditor
+      // instance, using default configuration.
+      CKEDITOR.replace( 'editor' );
+    </script>
+    <input type="submit" value="OK">
+  </form>
+</body>
+</html>
