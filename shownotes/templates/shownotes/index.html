@@ -1,20 +1,6 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>CLASS NOTES</title>
-<script type="text/javascript" src="/static/jquery-2.1.0.js"></script>
-<link href="../../static/css/shownotes/index.css" rel="stylesheet" type="text/css">
-</head>
+{% extends "shownotes/base.html" %}
 
-<body>
-  
-  <div id="top-bar">
-	  <ul>
-      <li><a href="/editnote/edit">New Note</a></li>
-	  </ul>
-    <div><a href="/shownotes/index">Class Note</a></div>
-  </div>
+{% block main %}
   <div>
     <div id="classname">
       {% for n in note%}
@@ -41,6 +27,5 @@
   }
 
 </script>
+{% endblock %}
 
-</body>
-</html>

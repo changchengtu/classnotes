@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'shownotes',
     'editnote',
     'notes',
+    'accounts',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,3 +85,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# For user account
+LOGIN_REDIRECT_URL='/shownotes/index'
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_OPEN=True
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'dreampocketit@gmail.com'
+EMAIL_HOST_PASSWORD = 'dreampocketclub'
+

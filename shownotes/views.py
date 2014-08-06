@@ -6,9 +6,18 @@ import json
 from django.views.decorators.csrf import csrf_protect
 
 def index(request):
+	username = None
+
 	note = Note.objects.all()[:10]
+	if request.user.is_authenticated():
+		username = request.user.username
+	else:
+		username = None
+
+
 	context = RequestContext(request, {
         'note': note,
+        'username': username,
     })
 
 	return render(request, 'shownotes/index.html', context)
