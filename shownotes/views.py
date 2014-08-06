@@ -29,6 +29,45 @@ def getContent(request):
 
 	note = Note.objects.get(id=pk)
 	data['content'] = note.content
-	print note.content
+	print 'getContent'
+	return HttpResponse(json.dumps(data), content_type="application/json")
+
+def getNoteList(request):
+	data = {}
+	data['id']=[]
+	data['subject']=[]
+	data['content']=[]
+
+	school_name = request.GET.get('s','')
+	department_name = request.GET.get('d','')
+	notes = Note.objects.filter(school=school_name,department=department_name)
+	for n in notes:
+		data['id'].append(n.id)
+		data['subject'].append(n.subject)
+		data['content'].append(n.content)
+		
+	return HttpResponse(json.dumps(data), content_type="application/json")
+
+def getSchoolList(request):
+
+	data = {}
+	notes = Note.objects.all()
+	school_list=[]
+	for note in notes:
+		school_list.append(note.school)
+	data['content'] = list(set(school_list))
+	print "getSchoolList"
+	return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+def getDepartmentList(request):
+
+	data = {}
+	notes = Note.objects.all()
+	department_list=[]
+	for note in notes:
+		department_list.append(note.department)
+	data['content'] = list(set(department_list))
+	print "getDepartmentList"
 	return HttpResponse(json.dumps(data), content_type="application/json")
 

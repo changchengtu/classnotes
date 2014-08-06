@@ -10,7 +10,7 @@ def index(request):
 
 def save(request):
 	print request.POST
-	n = Note(subject=request.POST.get('subject'),content=request.POST.get('editor'))
+	n = Note(subject=request.POST.get('subject'),content=request.POST.get('editor'),school=request.POST.get('school'),department=request.POST.get('department'))
 	n.save()
 	return HttpResponseRedirect('/shownotes/index')
 

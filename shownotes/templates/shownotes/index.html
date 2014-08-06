@@ -1,21 +1,32 @@
+<link href="../../static/css/shownotes/index.css" rel="stylesheet" type="text/css">
 {% extends "shownotes/base.html" %}
 
 {% block main %}
-  <div>
-    <div id="classname">
+  <div id="main">
+    <div id="category">
+      <div id="schoolname-tag" onclick="getSchoolList()" class="menu">school</div>
+      <div id="schoolname-list"></div>
+      <div id="departmentname-tag" onclick="getDepartmentList()" class="menu">department</div>
+      <div id="departmentname-list"></div>
+    </div>
+    <div id="notenamelist">
       {% for n in note%}
-        <div onclick="getContent('{{n.id}}')">
-          
+        <div onclick="getContent('{{n.id}}')">         
           {{ n.subject|safe }}</br>
           {{ n.content|safe }}
-
         </div>
       {% endfor %}
     </div>
     <div id="shownote">Content for  class "main" Goes Here </div>
   </div>
+
   <script>
   var content;
+  var school_list=false;
+  var department_list=false;
+  var school_name="";
+  var department_name="";
+
 
   function getContent(id) {
     $.getJSON("/shownotes/getContent/?q="+id, 
@@ -23,7 +34,71 @@
       content = data;
       document.getElementById("shownote").innerHTML = content['content'];
     });
-    
+  }
+
+  function getSchoolList() {
+    if (school_list==false){
+      $.getJSON("/shownotes/getSchoolList/", 
+        function(data){
+          content = data;
+          var text="";
+          school_name=content['content'][0];
+          for (i = 0; i < content['content'].length; i++) { 
+            text += "<div id='"+content['content'][i]+"' onclick='setSchoolName("+'"'+content['content'][i]+'"'+")'>"+content['content'][i] + "</div>";
+          } 
+          document.getElementById("schoolname-list").innerHTML = text;
+          school_list=true;
+      });
+    }else{
+      document.getElementById("schoolname-list").innerHTML = "";
+      school_list=false;
+    }
+
+  }
+
+  function getDepartmentList() { 
+    if (department_list==false){ 
+      $.getJSON("/shownotes/getDepartmentList/", 
+        function(data){
+          content = data;
+          var text="";
+          department_name=content['content'][0]
+          for (i = 0; i < content['content'].length; i++) { 
+            text += "<div id='"+content['content'][i]+"' onclick='setDepartmentName("+'"'+content['content'][i]+'"'+")'>"+content['content'][i] + "</div>";
+          }  
+        document.getElementById("departmentname-list").innerHTML = text;
+        department_list=true;
+      });
+    }else{
+      document.getElementById("departmentname-list").innerHTML = "";
+      department_list=false;
+    }
+  }
+
+  function getNoteList(school_name, department_name) {
+    $.getJSON("/shownotes/getNoteList/?s="+school_name+"&d="+department_name, 
+        function(data){
+          content = data;
+          var text="";
+          for (i = 0; i < content['content'].length; i++) { 
+            text += "<div id='"+i+"' onclick='getContent("+'"'+content['id'][i]+'"'+")'>"+content['subject'][i]+content['content'][i] + "</div>";
+          } 
+        document.getElementById("notenamelist").innerHTML = text;
+    });
+  }
+
+  function setSchoolName(name){
+    document.getElementById(school_name).style.backgroundColor="white";
+    school_name=name;
+    document.getElementById(name).style.backgroundColor="red";
+    getNoteList(school_name,department_name);
+  }
+
+  function setDepartmentName(name){
+    document.getElementById(department_name).style.backgroundColor="white";
+    department_name=name;
+    document.getElementById(name).style.backgroundColor="red";
+    getNoteList(school_name,department_name);
   }
 
 </script>
