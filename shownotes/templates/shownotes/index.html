@@ -17,7 +17,10 @@
         </div>
       {% endfor %}
     </div>
-    <div id="shownote">Content for  class "main" Goes Here </div>
+    <div id="shownote">
+    	<div id="title">Title</div>
+        <div id="content">Content</div>
+    </div>
   </div>
 
   <script>
@@ -32,7 +35,8 @@
     $.getJSON("/shownotes/getContent/?q="+id, 
     function(data){
       content = data;
-      document.getElementById("shownote").innerHTML = content['content'];
+      document.getElementById("title").innerHTML = content['subject'];
+      document.getElementById("content").innerHTML = content['content'];
     });
   }
 
