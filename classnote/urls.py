@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^accounts/login/$',  login),
     url(r'^accounts/logout/$', logout, {'next_page': '/shownotes/index'}),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^accounts/my_notes', 'accounts.views.my_notes'),
 )

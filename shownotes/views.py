@@ -28,6 +28,9 @@ def getContent(request):
 	pk = request.GET.get('q','')
 
 	note = Note.objects.get(id=pk)
+	data['school_name'] = note.school_name
+	data['department_name'] = note.department_name
+	data['class_name'] = note.class_name
 	data['subject'] = note.subject
 	data['content'] = note.content
 	print 'getContent'

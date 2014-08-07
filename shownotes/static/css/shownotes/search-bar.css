@@ -1,0 +1,21 @@
+#search-bar {
+
+	border-width: thin;
+	border-style: solid;
+	border-color: #C8C8C8 #A8A8A8;
+}
+
+#search-bar form{
+	width:500px;
+	margin-left: 250px;
+}
+.search { 
+	padding:6px 15px 6px 30px;
+	margin:3px; 
+	background-color:white;
+}
+
+.lighter input[type=text]{
+	border:1px solid #d0d0d0;
+	background-color:#fcfcfc;
+}

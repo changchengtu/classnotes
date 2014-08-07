@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>CLASS NOTES</title>
-<script type="text/javascript" src="/static/jquery-2.1.0.js"></script>
-<script src="{{ STATIC_URL }}ckeditor/ckeditor.js"></script>
-<link href="../../static/css/shownotes/index.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="/static/jquery-2.1.0.js"></script>
+  <script src="{{ STATIC_URL }}ckeditor/ckeditor.js"></script>
+  <link href="../../static/css/shownotes/index.css" rel="stylesheet" type="text/css">
+  <link href="../../static/css/shownotes/top-bar.css" rel="stylesheet" type="text/css">
 </head>
 
 
@@ -16,6 +17,7 @@
         <li>(<a href="{% url 'auth_logout' %}">"Logout"</a> | 
         <a href="{% url 'auth_password_change' %}">"Change password"</a>)</li>
         <li><a href="/editnote/edit">New Note</a></li>
+        <li><a href="/accounts/my_notes">My Notes</a></li>
         <li>{{ user.username }}</li>
       {% else %}
 	    <li><a href="/accounts/login">login</a></li>

@@ -2,24 +2,32 @@
 {% extends "shownotes/base.html" %}
 
 {% block main %}
+  <div>
+  All notes
+  </div>
   <div id="main">
     <div id="category">
-      <div id="schoolname-tag" onclick="getSchoolList()" class="menu">school</div>
+      <div id="schoolname-tag" onclick="getSchoolList()" class="menu">學校</div>
       <div id="schoolname-list"></div>
-      <div id="departmentname-tag" onclick="getDepartmentList()" class="menu">department</div>
+      <div id="departmentname-tag" onclick="getDepartmentList()" class="menu">系所</div>
       <div id="departmentname-list"></div>
     </div>
-    <div id="notenamelist">
-      {% for n in note%}
-        <div onclick="getContent('{{n.id}}')">         
-          {{ n.subject|safe }}</br>
-          {{ n.content|safe }}
-        </div>
-      {% endfor %}
+    <div id="notelist-div">
+      <div>所有筆記</div>
+      <div id="notenamelist">
+      
+        {% for n in note%}
+          <div onclick="getContent('{{n.id}}')">         
+            {{ n.subject|safe }}</br>
+            {{ n.content|safe }}
+          </div>
+        {% endfor %}
+      </div>
     </div>
     <div id="shownote">
+      <div id="condition">condition</div>
     	<div id="title">Title</div>
-        <div id="content">Content</div>
+      <div id="content">Content</div>
     </div>
   </div>
 
@@ -35,6 +43,7 @@
     $.getJSON("/shownotes/getContent/?q="+id, 
     function(data){
       content = data;
+      document.getElementById("condition").innerHTML = "<a style='"+"color:#686868'> school: "+content['school_name']+"&nbsp;&nbsp;&nbsp;&nbsp;department: "+content['department_name']+"&nbsp;&nbsp;&nbsp;&nbsp; class: "+content['class_name'];
       document.getElementById("title").innerHTML = content['subject'];
       document.getElementById("content").innerHTML = content['content'];
     });
@@ -92,16 +101,16 @@
   }
 
   function setSchoolName(name){
-    document.getElementById(school_name).style.backgroundColor="white";
+    document.getElementById(school_name).style.backgroundColor="#dadee1";
     school_name=name;
-    document.getElementById(name).style.backgroundColor="red";
+    document.getElementById(name).style.backgroundColor="#C0C0C0";
     getNoteList(school_name,department_name);
   }
 
   function setDepartmentName(name){
-    document.getElementById(department_name).style.backgroundColor="white";
+    document.getElementById(department_name).style.backgroundColor="#dadee1";
     department_name=name;
-    document.getElementById(name).style.backgroundColor="red";
+    document.getElementById(name).style.backgroundColor="#C0C0C0";
     getNoteList(school_name,department_name);
   }
 

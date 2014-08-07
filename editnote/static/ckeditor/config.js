@@ -12,6 +12,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.autosave_SaveKey = 'autosaveKey';
 	config.autosave_NotOlderThan = 1;
 	config.autosave_saveOnDestroy = false;
-	config.autosaveTargetUrl = 'http://example.com/path_to_script_that_saves_data';
+	config.autosaveTargetUrl = 'http://example.com/path_to_script_that_saves_data'; 
 	
 };
