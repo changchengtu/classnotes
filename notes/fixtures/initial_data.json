@@ -1,0 +1,25 @@
+[
+  {
+    "model": "classnotes.note",
+    "pk": 1,
+    "fields": {
+      "authors": "cct",
+      "subject": "service science",
+      "content": "this is note for service science",
+      "school_name": "NTHU",
+      "department_name": "TSMC",
+      "class_name": "service science"
+    }
+  },
+  {
+    "model": "classnotes.note",
+    "pk": 2,
+    "fields": {
+      "authors": "cct",
+      "subject": "text mining",
+      "content": "this is note for text mining",
+      "school_name": "NTHU",
+      "department_name": "TSMC",
+      "class_name": "text mining"
+    }
+]
