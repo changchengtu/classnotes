@@ -1,1 +1,2 @@
-set settings.py which is needed for heroku
+1. set settings.py which is needed for heroku
+2. gmail problem : http://joequery.me/code/python-smtp-authenticationerror/

@@ -14,10 +14,8 @@
   <div id="top-bar">
     <ul>
       {% if user.is_authenticated %}
-        <li>(<a href="{% url 'auth_logout' %}">"Logout"</a> | 
-        <a href="{% url 'auth_password_change' %}">"Change password"</a>)</li>
-        <li><a href="/editnote/edit">New Note</a></li>
-        <li><a href="/accounts/my_notes">My Notes</a></li>
+        <li><a href="{% url 'auth_logout' %}">Logout</a>
+        <li><a href="/editnote/edit">New</a></li>
         <li>{{ user.username }}</li>
       {% else %}
 	    <li><a href="/accounts/login">login</a></li>

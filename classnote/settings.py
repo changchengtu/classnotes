@@ -24,6 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 
@@ -87,9 +88,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # For user account
+LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL='/shownotes/index'
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_OPEN=True
+
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -100,6 +103,7 @@ EMAIL_HOST_PASSWORD = 'dreampocketclub'
 
 
 
+'''
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
@@ -119,4 +123,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+'''
+
 
