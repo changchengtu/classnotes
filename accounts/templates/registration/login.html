@@ -19,7 +19,6 @@
 	  	<input type="hidden" name="next" value="{{ next }}" />
 	  	<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
 		<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
-		<p>{% url "socialauth_begin" "facebook-oauth2" %}</p>
 	  </div>
 	</form>
 
